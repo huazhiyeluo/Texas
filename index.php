@@ -1,9 +1,12 @@
 <?php
+
+//key=0代表花色
+//key=1代表牌
+
 $publicCard = [[1, 9], [3, 14], [1, 2], [2, 6], [1, 4]];
 $selfCard   = [[2, 10], [2, 14]];
 
 $allCard = array_merge($publicCard, $selfCard);
-
 
 $cards = sortCard($allCard);
 
@@ -20,7 +23,7 @@ echo $cardHtml;
 echo getTypeNum($new);
 
 
-
+//组合出所有的牌型7张选5张
 function getGroup($allCard, $num)
 {
     $r = [];
@@ -63,7 +66,7 @@ function sortCard($allCard)
     return $cards;
 }
 
-
+//获取牌型
 function getTypeNum($card)
 {
     $nums   = getNums($card);
@@ -107,7 +110,7 @@ function getTypeNum($card)
     //高牌
     return 1;
 }
-
+//同一牌型的大小
 function equalCardType($type, $card1, $card2)
 {
     $nums1 = getNums($card1);
@@ -193,7 +196,7 @@ function equalCardType($type, $card1, $card2)
     }
 
 }
-
+//获取牌型值
 function getNums($card)
 {
     $nums = [];
@@ -203,7 +206,7 @@ function getNums($card)
     sort($nums);
     return $nums;
 }
-
+//获取牌型颜色
 function getColors($card)
 {
     $colors = [];
@@ -235,6 +238,12 @@ function checkStraight($nums)
     return $isStraight;
 }
 
+/**
+*$nums 传入牌型
+*$same 同一张牌个数
+*$sameCounts 每张牌的个数
+*return A 两对
+*/
 function checkSame(array $nums, $same = 4, array &$sameCounts = [])
 {
     // 桶方法
@@ -253,7 +262,7 @@ function checkSame(array $nums, $same = 4, array &$sameCounts = [])
     }
     return $sameNumber;
 }
-
+//比较牌的大小
 function compareNumber(array $nums1, array $nums2)
 {
     rsort($nums1);
